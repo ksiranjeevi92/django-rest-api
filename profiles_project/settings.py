@@ -83,7 +83,7 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES" : (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     )
 }
 
@@ -96,7 +96,7 @@ SIMPLE_JWT = {
     'SIGNING_KEY': os.getenv("JWT_SECRET_KEY", SECRET_KEY),
     "AUTH_HEADER_TYPES": ("Bearer",),
     # Point to the custom serializer that injects user roles into the JWT payload
-    "TOKEN_OBTAIN_SERIALIZER": "accounts.serializers.CustomTokenObtainPairSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "authentication.serializers.CustomTokenObtainPairSerializer",
 }
 
 WSGI_APPLICATION = 'profiles_project.wsgi.application'

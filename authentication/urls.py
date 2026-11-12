@@ -3,6 +3,8 @@ from rest_framework.routers import DefaultRouter
 
 from authentication.views import (
     CustomTokenObtainPairView,
+    LogoutView,
+    CookieTokenRefreshView
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 
@@ -16,6 +18,7 @@ urlpatterns = [
         name="token_obtain_pair",
     ),
     path(
-        "refresh/", TokenRefreshView.as_view(), name="token_refresh"
+        "refresh/", CookieTokenRefreshView.as_view(), name="token_refresh"
     ),
+    path("logout/", LogoutView.as_view(), name="token_logout"),
 ]
